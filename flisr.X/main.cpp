@@ -12,6 +12,7 @@
 // General
 #include "../AVRTools.X/InitSystem.h"
 #include "../AVRTools.X/SystemClock.h"
+#include <string.h>
 
 #define A1_relay    pPin18;
 #define A2_relay    pPin29;
@@ -52,8 +53,27 @@ int main(int argc, char** argv) {
     
     initSystem();
     initSystemClock();
+    initA2D();
+    
     Serial0* Serial = new Serial0();
     int bytes = 0;
+    GpioPinVariable pins[16];
+    pins[0]  = makeGpioVarFromGpioPin(A1_CT);
+    pins[1]  = makeGpioVarFromGpioPin(A2_CT);
+    pins[2]  = makeGpioVarFromGpioPin(A3_CT);
+    pins[3]  = makeGpioVarFromGpioPin(A4_CT);
+    pins[4]  = makeGpioVarFromGpioPin(B1_CT);
+    pins[5]  = makeGpioVarFromGpioPin(B2_CT);
+    pins[6]  = makeGpioVarFromGpioPin(B3_CT);
+    pins[7]  = makeGpioVarFromGpioPin(B4_CT);
+    pins[8]  = makeGpioVarFromGpioPin(C1_CT);
+    pins[9]  = makeGpioVarFromGpioPin(C2_CT);
+    pins[10] = makeGpioVarFromGpioPin(C3_CT);
+    pins[11] = makeGpioVarFromGpioPin(C4_CT);
+    pins[12] = makeGpioVarFromGpioPin(D1_CT);
+    pins[13] = makeGpioVarFromGpioPin(D2_CT);
+    pins[14] = makeGpioVarFromGpioPin(D3_CT);
+    pins[15] = makeGpioVarFromGpioPin(D4_CT);
     
     //Set Output Ports
     setGpioPinModeOutput(A1_relay);
@@ -121,38 +141,44 @@ int main(int argc, char** argv) {
     Serial->start(9600);
     while(true){
         
+        // With pin variables
+        for(int i = 0; i < 16; i++){
+            bytes += Serial->println(readGpioPinAnalogV(pins[i]));
+        }
+        
+        // Without pin variables
         bytes += Serial->print("A1: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(A1_CT)));
+        bytes += Serial->println(readGpioPinAnalog(A1_CT));
         bytes += Serial->print("A2: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(A2_CT)));
+        bytes += Serial->println(readGpioPinAnalog(A2_CT));
         bytes += Serial->print("A3: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(A3_CT)));
+        bytes += Serial->println(readGpioPinAnalog(A3_CT));
         bytes += Serial->print("A4: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(A4_CT)));
+        bytes += Serial->println(readGpioPinAnalog(A4_CT));
         bytes += Serial->print("B1: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(B1_CT)));
+        bytes += Serial->println(readGpioPinAnalog(B1_CT));
         bytes += Serial->print("B2: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(B2_CT)));
+        bytes += Serial->println(readGpioPinAnalog(B2_CT));
         bytes += Serial->print("B3: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(B3_CT)));
+        bytes += Serial->println(readGpioPinAnalog(B3_CT));
         bytes += Serial->print("B4: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(B4_CT)));
+        bytes += Serial->println(readGpioPinAnalog(B4_CT));
         bytes += Serial->print("C1: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(C1_CT)));
+        bytes += Serial->println(readGpioPinAnalog(C1_CT));
         bytes += Serial->print("C2: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(C2_CT)));
+        bytes += Serial->println(readGpioPinAnalog(C2_CT));
         bytes += Serial->print("C3: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(C3_CT)));
+        bytes += Serial->println(readGpioPinAnalog(C3_CT));
         bytes += Serial->print("C4: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(C4_CT)));
+        bytes += Serial->println(readGpioPinAnalog(C4_CT));
         bytes += Serial->print("D1: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(D1_CT)));
+        bytes += Serial->println(readGpioPinAnalog(D1_CT));
         bytes += Serial->print("D2: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(D2_CT)));
+        bytes += Serial->println(readGpioPinAnalog(D2_CT));
         bytes += Serial->print("D3: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(D3_CT)));
+        bytes += Serial->println(readGpioPinAnalog(D3_CT));
         bytes += Serial->print("D4: ");
-        bytes += Serial->println(readGpioPinAnalogV(makeGpioVarFromGpioPinAnalog(D4_CT)));
+        bytes += Serial->println(readGpioPinAnalog(D4_CT));
         delay(10000);
     }
     return 0;
