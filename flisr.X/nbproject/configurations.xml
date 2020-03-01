@@ -45,6 +45,7 @@
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
       <itemPath>test.cpp</itemPath>
+      <itemPath>test2.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -286,6 +287,8 @@
         <property key="voltagevalue" value="5.0"/>
       </pk4hybrid>
       <item path="test.cpp" ex="true" overriding="false">
+      </item>
+      <item path="test2.cpp" ex="true" overriding="false">
       </item>
     </conf>
   </confs>
