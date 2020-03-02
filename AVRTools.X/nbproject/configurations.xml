@@ -113,7 +113,7 @@
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
@@ -158,7 +158,7 @@
         <property key="strict-ansi-errors" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="syntax-only" value="false"/>
-        <property key="undefined-identifier" value="false"/>
+        <property key="undefined-identifier" value="true"/>
         <property key="verbose" value="false"/>
       </AVR-CPP>
       <AVR-GCC>
@@ -185,7 +185,7 @@
         <property key="strict-ansi-errors" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="syntax-only" value="false"/>
-        <property key="undefined-identifier" value="false"/>
+        <property key="undefined-identifier" value="true"/>
         <property key="verbose" value="false"/>
       </AVR-GCC>
       <AVR-Global>

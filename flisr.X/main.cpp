@@ -12,7 +12,6 @@
 // General
 #include "../AVRTools.X/InitSystem.h"
 #include "../AVRTools.X/SystemClock.h"
-#include <string.h>
 
 #define A1_relay    pPin18;
 #define A2_relay    pPin29;
