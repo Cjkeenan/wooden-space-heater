@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
     initSystemClock();
     initA2D();
     
-    Serial0* Serial = new Serial0();
-    int bytes = 0;
+    Serial0 usb;
+    
     GpioPinVariable pins[16];
     pins[0]  = makeGpioVarFromGpioPin(A1_CT);
     pins[1]  = makeGpioVarFromGpioPin(A2_CT);
@@ -137,48 +137,58 @@ int main(int argc, char** argv) {
     setGpioPinModeInput(D3_CT);
     setGpioPinModeInput(D4_CT);
     
-    Serial->start(9600);
+    usb.start(9600);
     while(true){
         
         // With pin variables
-        for(int i = 0; i < 16; i++){
-            bytes += Serial->println(readGpioPinAnalogV(pins[i]));
-        }
+//        usb.write("Current Check Start");
+//        for(int i = 0; i < 16; i++){
+//            usb.write(i);
+//            usb.write(readGpioPinAnalogV(pins[i]));
+//            usb.write("\n\r");
+//        }
         
-        // Without pin variables
-        bytes += Serial->print("A1: ");
-        bytes += Serial->println(readGpioPinAnalog(A1_CT));
-        bytes += Serial->print("A2: ");
-        bytes += Serial->println(readGpioPinAnalog(A2_CT));
-        bytes += Serial->print("A3: ");
-        bytes += Serial->println(readGpioPinAnalog(A3_CT));
-        bytes += Serial->print("A4: ");
-        bytes += Serial->println(readGpioPinAnalog(A4_CT));
-        bytes += Serial->print("B1: ");
-        bytes += Serial->println(readGpioPinAnalog(B1_CT));
-        bytes += Serial->print("B2: ");
-        bytes += Serial->println(readGpioPinAnalog(B2_CT));
-        bytes += Serial->print("B3: ");
-        bytes += Serial->println(readGpioPinAnalog(B3_CT));
-        bytes += Serial->print("B4: ");
-        bytes += Serial->println(readGpioPinAnalog(B4_CT));
-        bytes += Serial->print("C1: ");
-        bytes += Serial->println(readGpioPinAnalog(C1_CT));
-        bytes += Serial->print("C2: ");
-        bytes += Serial->println(readGpioPinAnalog(C2_CT));
-        bytes += Serial->print("C3: ");
-        bytes += Serial->println(readGpioPinAnalog(C3_CT));
-        bytes += Serial->print("C4: ");
-        bytes += Serial->println(readGpioPinAnalog(C4_CT));
-        bytes += Serial->print("D1: ");
-        bytes += Serial->println(readGpioPinAnalog(D1_CT));
-        bytes += Serial->print("D2: ");
-        bytes += Serial->println(readGpioPinAnalog(D2_CT));
-        bytes += Serial->print("D3: ");
-        bytes += Serial->println(readGpioPinAnalog(D3_CT));
-        bytes += Serial->print("D4: ");
-        bytes += Serial->println(readGpioPinAnalog(D4_CT));
-        delay(10000);
+//        // Without pin variables
+//        Serial->println("A1: ");
+//        Serial->println(readGpioPinAnalog(A1_CT));
+//        Serial->print("A2: ");
+//        Serial->println(readGpioPinAnalog(A2_CT));
+//        Serial->print("A3: ");
+//        Serial->println(readGpioPinAnalog(A3_CT));
+//        Serial->print("A4: ");
+//        Serial->println(readGpioPinAnalog(A4_CT));
+//        Serial->print("B1: ");
+//        Serial->println(readGpioPinAnalog(B1_CT));
+//        Serial->print("B2: ");
+//        Serial->println(readGpioPinAnalog(B2_CT));
+//        Serial->print("B3: ");
+//        Serial->println(readGpioPinAnalog(B3_CT));
+//        Serial->print("B4: ");
+//        Serial->println(readGpioPinAnalog(B4_CT));
+//        Serial->print("C1: ");
+//        Serial->println(readGpioPinAnalog(C1_CT));
+//        Serial->print("C2: ");
+//        Serial->println(readGpioPinAnalog(C2_CT));
+//        Serial->print("C3: ");
+//        Serial->println(readGpioPinAnalog(C3_CT));
+//        Serial->print("C4: ");
+//        Serial->println(readGpioPinAnalog(C4_CT));
+//        Serial->print("D1: ");
+//        Serial->println(readGpioPinAnalog(D1_CT));
+//        Serial->print("D2: ");
+//        Serial->println(readGpioPinAnalog(D2_CT));
+//        Serial->print("D3: ");
+//        Serial->println(readGpioPinAnalog(D3_CT));
+//        Serial->print("D4: ");
+//        Serial->println(readGpioPinAnalog(D4_CT));
+        
+        // write() currently working, print() and println() currently not
+        usb.write("Hello World!\n\r");
+        usb.println("hello");
+        usb.println(1);
+        usb.write(1);
+        
+        delay(5000);
     }
     return 0;
 }
