@@ -64,7 +64,7 @@
         <targetDevice>ATmega2560</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>AVR</languageToolchain>
         <languageToolchainVersion>5.4.0</languageToolchainVersion>
         <platform>3</platform>
@@ -236,10 +236,8 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UpdateOptions"
                   value="ToolFirmwareOption.UseLatest"/>
-        <property key="ToolFirmwareToolPack"
-                  value="Press to select which tool pack to use"/>
         <property key="communication.activationmode" value="nohv"/>
-        <property key="communication.interface" value="jtag"/>
+        <property key="communication.interface" value="isp"/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="0.200"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
@@ -257,6 +255,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Users/Colin Keenan/OneDrive/GitHub/Cjkeenan/wooden-space-heater/flisr.X/debug/default/flisr_ptg"/>
         <property key="programmerToGoImageName" value="flisr_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -277,13 +277,8 @@
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="programoptionsedbg.eraseb4program" value="true"/>
         <property key="ptgProgramImage" value="true"/>
         <property key="ptgSendImage" value="true"/>
-        <property key="toolpack.updateoptions"
-                  value="toolpack.updateoptions.uselatestoolpack"/>
-        <property key="toolpack.updateoptions.packversion"
-                  value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value="5.0"/>
       </pk4hybrid>
       <item path="test.cpp" ex="true" overriding="false">
