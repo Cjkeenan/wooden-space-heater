@@ -46,6 +46,7 @@
       <itemPath>main.cpp</itemPath>
       <itemPath>test.cpp</itemPath>
       <itemPath>test2.cpp</itemPath>
+      <itemPath>serial_test.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -213,7 +214,7 @@
         <property key="sram-segment" value=""/>
         <property key="v-printf" value="false"/>
       </AVR-LD>
-      <item path="main.cpp" ex="false" overriding="false">
+      <item path="main.cpp" ex="true" overriding="false">
         <AVR-AR>
         </AVR-AR>
         <AVR-AS>
