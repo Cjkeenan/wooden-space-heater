@@ -283,6 +283,20 @@
         <property key="voltagevalue" value="5.0"/>
       </pk4hybrid>
       <item path="serial_test.cpp" ex="true" overriding="false">
+        <AVR-AR>
+        </AVR-AR>
+        <AVR-AS>
+        </AVR-AS>
+        <AVR-AS-PRE>
+        </AVR-AS-PRE>
+        <AVR-CPP>
+        </AVR-CPP>
+        <AVR-GCC>
+        </AVR-GCC>
+        <AVR-Global>
+        </AVR-Global>
+        <AVR-LD>
+        </AVR-LD>
       </item>
       <item path="test.cpp" ex="true" overriding="false">
         <AVR-AR>
