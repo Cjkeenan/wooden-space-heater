@@ -49,18 +49,24 @@
 #define D2_CT       pPinA13;
 #define D3_CT       pPinA14;
 #define D4_CT       pPinA15;
+<<<<<<< HEAD
 
 // Global Variables
 float currentHash[1024] = {};
 
 // Function Prototypes
 void initHash();
+void turnOffAllRelays();
+void turnOnAllRelays();
 
+>>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
 int main() {
     initHash();
     initSystem();
     initSystemClock();
     initA2D();
+<<<<<<< HEAD
+>>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
 
     Serial0 usb;
     usb.start( 38400 );
@@ -105,26 +111,13 @@ int main() {
     setGpioPinModeOutput(D3_relay);
     setGpioPinModeOutput(D4_relay);
     
+<<<<<<< HEAD
     //Initialize output ports high (OFF)
-    setGpioPinHigh(A1_relay);
-    setGpioPinHigh(A2_relay);
-    setGpioPinHigh(A3_relay);
-    setGpioPinHigh(A4_relay);
+    //turnOffAllRelays();
+>>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
     
-    setGpioPinHigh(B1_relay);
-    setGpioPinHigh(B2_relay);
-    setGpioPinHigh(B3_relay);
-    setGpioPinHigh(B4_relay);
-    
-    setGpioPinHigh(C1_relay);
-    setGpioPinHigh(C2_relay);
-    setGpioPinHigh(C3_relay);
-    setGpioPinHigh(C4_relay);
-    
-    setGpioPinHigh(D1_relay);
-    setGpioPinHigh(D2_relay);
-    setGpioPinHigh(D3_relay);
-    setGpioPinHigh(D4_relay);
+    //Initialize output ports low (which is inverse in circuit)
+    turnOnAllRelays();
     
     //Set input Ports (Current Sensors)
     setGpioPinModeInput(A1_CT);
@@ -207,7 +200,51 @@ int main() {
 }
 
 void initHash(){
-    for(int i = 0; i < 1024; i++){
-        currentHash[i] = i / 51.15;
-    }
+   for(int i = 0; i < 1024; i++){
+       currentHash[i] = i / 51.15;
+   }
+}
+
+void turnOnAllRelays(){
+    setGpioPinLow(A1_relay);
+    setGpioPinLow(A2_relay);
+    setGpioPinLow(A3_relay);
+    setGpioPinLow(A4_relay);
+    
+    setGpioPinLow(B1_relay);
+    setGpioPinLow(B2_relay);
+    setGpioPinLow(B3_relay);
+    setGpioPinLow(B4_relay);
+    
+    setGpioPinLow(C1_relay);
+    setGpioPinLow(C2_relay);
+    setGpioPinLow(C3_relay);
+    setGpioPinLow(C4_relay);
+    
+    setGpioPinLow(D1_relay);
+    setGpioPinLow(D2_relay);
+    setGpioPinLow(D3_relay);
+    setGpioPinLow(D4_relay);
+}
+
+void turnOffAllRelays(){
+    setGpioPinHigh(A1_relay);
+    setGpioPinHigh(A2_relay);
+    setGpioPinHigh(A3_relay);
+    setGpioPinHigh(A4_relay);
+    
+    setGpioPinHigh(B1_relay);
+    setGpioPinHigh(B2_relay);
+    setGpioPinHigh(B3_relay);
+    setGpioPinHigh(B4_relay);
+    
+    setGpioPinHigh(C1_relay);
+    setGpioPinHigh(C2_relay);
+    setGpioPinHigh(C3_relay);
+    setGpioPinHigh(C4_relay);
+    
+    setGpioPinHigh(D1_relay);
+    setGpioPinHigh(D2_relay);
+    setGpioPinHigh(D3_relay);
+    setGpioPinHigh(D4_relay);
 }
