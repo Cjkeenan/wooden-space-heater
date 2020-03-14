@@ -48,31 +48,33 @@
 #define D3_CT       pPinA14;
 #define D4_CT       pPinA15;
 
-int main(int argc, char** argv) {
-    
+int main() {
+       
     initSystem();
     initSystemClock();
     initA2D();
-    
+
     Serial0 usb;
-    
-    GpioPinVariable pins[16];
-    pins[0]  = makeGpioVarFromGpioPin(A1_CT);
-    pins[1]  = makeGpioVarFromGpioPin(A2_CT);
-    pins[2]  = makeGpioVarFromGpioPin(A3_CT);
-    pins[3]  = makeGpioVarFromGpioPin(A4_CT);
-    pins[4]  = makeGpioVarFromGpioPin(B1_CT);
-    pins[5]  = makeGpioVarFromGpioPin(B2_CT);
-    pins[6]  = makeGpioVarFromGpioPin(B3_CT);
-    pins[7]  = makeGpioVarFromGpioPin(B4_CT);
-    pins[8]  = makeGpioVarFromGpioPin(C1_CT);
-    pins[9]  = makeGpioVarFromGpioPin(C2_CT);
-    pins[10] = makeGpioVarFromGpioPin(C3_CT);
-    pins[11] = makeGpioVarFromGpioPin(C4_CT);
-    pins[12] = makeGpioVarFromGpioPin(D1_CT);
-    pins[13] = makeGpioVarFromGpioPin(D2_CT);
-    pins[14] = makeGpioVarFromGpioPin(D3_CT);
-    pins[15] = makeGpioVarFromGpioPin(D4_CT);
+    usb.start( 38400 );
+    delayMilliseconds( 2000 );
+
+    USART0::write( '\n\nSerial Init\n' );   
+
+    usb.write( "\n\nwrite() test\n" );
+
+    usb.write( '1' );
+
+    usb.write( '\n' );
+
+    usb.write( "write() done\n" );
+
+    usb.println( "\n\nprintln() test" );
+
+    usb.println( 1 );
+
+    usb.println( "println() done" );
+
+    usb.println( 1 );
     
     //Set Output Ports
     setGpioPinModeOutput(A1_relay);
@@ -137,58 +139,61 @@ int main(int argc, char** argv) {
     setGpioPinModeInput(D3_CT);
     setGpioPinModeInput(D4_CT);
     
-    usb.start(9600);
+    int i = 0;
     while(true){
-        
-        // With pin variables
-//        usb.write("Current Check Start");
-//        for(int i = 0; i < 16; i++){
-//            usb.write(i);
-//            usb.write(readGpioPinAnalogV(pins[i]));
-//            usb.write("\n\r");
-//        }
-        
-//        // Without pin variables
-//        Serial->println("A1: ");
-//        Serial->println(readGpioPinAnalog(A1_CT));
-//        Serial->print("A2: ");
-//        Serial->println(readGpioPinAnalog(A2_CT));
-//        Serial->print("A3: ");
-//        Serial->println(readGpioPinAnalog(A3_CT));
-//        Serial->print("A4: ");
-//        Serial->println(readGpioPinAnalog(A4_CT));
-//        Serial->print("B1: ");
-//        Serial->println(readGpioPinAnalog(B1_CT));
-//        Serial->print("B2: ");
-//        Serial->println(readGpioPinAnalog(B2_CT));
-//        Serial->print("B3: ");
-//        Serial->println(readGpioPinAnalog(B3_CT));
-//        Serial->print("B4: ");
-//        Serial->println(readGpioPinAnalog(B4_CT));
-//        Serial->print("C1: ");
-//        Serial->println(readGpioPinAnalog(C1_CT));
-//        Serial->print("C2: ");
-//        Serial->println(readGpioPinAnalog(C2_CT));
-//        Serial->print("C3: ");
-//        Serial->println(readGpioPinAnalog(C3_CT));
-//        Serial->print("C4: ");
-//        Serial->println(readGpioPinAnalog(C4_CT));
-//        Serial->print("D1: ");
-//        Serial->println(readGpioPinAnalog(D1_CT));
-//        Serial->print("D2: ");
-//        Serial->println(readGpioPinAnalog(D2_CT));
-//        Serial->print("D3: ");
-//        Serial->println(readGpioPinAnalog(D3_CT));
-//        Serial->print("D4: ");
-//        Serial->println(readGpioPinAnalog(D4_CT));
-        
-        // write() currently working, print() and println() currently not
-        usb.write("Hello World!\n\r");
-        usb.println("hello");
-        usb.println(1);
-        usb.write(1);
-        
-        delay(5000);
+       usb.print("----------------CURRENT READ NUMBER ");
+       usb.print(i);
+       usb.println("----------------\r");
+       usb.print("A1: ");
+       usb.print(readGpioPinAnalog(A1_CT));
+       usb.print("\n\r");
+       usb.print("A2: ");
+       usb.print(readGpioPinAnalog(A2_CT));
+       usb.print("\n\r");
+       usb.print("A3: ");
+       usb.print(readGpioPinAnalog(A3_CT));
+       usb.print("\n\r");
+       usb.print("A4: ");
+       usb.print(readGpioPinAnalog(A4_CT));
+       usb.println("\n\r");
+       usb.print("B1: ");
+       usb.print(readGpioPinAnalog(B1_CT));
+       usb.print("\n\r");
+       usb.print("B2: ");
+       usb.print(readGpioPinAnalog(B2_CT));
+       usb.print("\n\r");
+       usb.print("B3: ");
+       usb.print(readGpioPinAnalog(B3_CT));
+       usb.print("\n\r");
+       usb.print("B4: ");
+       usb.print(readGpioPinAnalog(B4_CT));
+       usb.println("\n\r");
+       usb.print("C1: ");
+       usb.print(readGpioPinAnalog(C1_CT));
+       usb.print("\n\r");
+       usb.print("C2: ");
+       usb.print(readGpioPinAnalog(C2_CT));
+       usb.print("\n\r");
+       usb.print("C3: ");
+       usb.print(readGpioPinAnalog(C3_CT));
+       usb.print("\n\r");
+       usb.print("C4: ");
+       usb.println(readGpioPinAnalog(C4_CT));
+       usb.println("\n\r");
+       usb.print("D1: ");
+       usb.print(readGpioPinAnalog(D1_CT));
+       usb.print("\n\r");
+       usb.print("D2: ");
+       usb.print(readGpioPinAnalog(D2_CT));
+       usb.print("\n\r");
+       usb.print("D3: ");
+       usb.print(readGpioPinAnalog(D3_CT));
+       usb.print("\n\r");
+       usb.print("D4: ");
+       usb.print(readGpioPinAnalog(D4_CT));
+       usb.print("\n\r");
+       i++;
+       delayMilliseconds(2000);
     }
     return 0;
 }
