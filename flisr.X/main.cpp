@@ -13,6 +13,7 @@
 #include "../AVRTools.X/InitSystem.h"
 #include "../AVRTools.X/SystemClock.h"
 
+// Relay Pin Mapping
 #define A1_relay    pPin18;
 #define A2_relay    pPin29;
 #define A3_relay    pPin28;
@@ -31,6 +32,7 @@
 #define D4_relay    pPin36;
 #define X7          pPin26;
 
+// Current Sensor Pin Mapping
 #define A1_CT       pPinA00;
 #define A2_CT       pPinA04;
 #define A3_CT       pPinA07;
@@ -48,22 +50,23 @@
 #define D3_CT       pPinA14;
 #define D4_CT       pPinA15;
 
-float currentHash[1024];
+// Global Variables
+float currentHash[1024] = {};
 
+// Function Prototypes
 void initHash();
 
 int main() {
-       
+    initHash();
     initSystem();
     initSystemClock();
     initA2D();
-    initHash();
 
     Serial0 usb;
     usb.start( 38400 );
     delayMilliseconds( 2000 );
 
-    USART0::write( '\n\nSerial Init\n' );   
+    USART0::write( "\n\nSerial Init\n" );   
 
     usb.write( "\n\nwrite() test\n" );
 
@@ -81,7 +84,7 @@ int main() {
 
     usb.println( 1 );
     
-    //Set Output Ports
+    //Set Output Ports (Relays)
     setGpioPinModeOutput(A1_relay);
     setGpioPinModeOutput(A2_relay);
     setGpioPinModeOutput(A3_relay);
@@ -102,7 +105,7 @@ int main() {
     setGpioPinModeOutput(D3_relay);
     setGpioPinModeOutput(D4_relay);
     
-    //Initialize output ports high (which is inverse in circuit)
+    //Initialize output ports high (OFF)
     setGpioPinHigh(A1_relay);
     setGpioPinHigh(A2_relay);
     setGpioPinHigh(A3_relay);
@@ -123,7 +126,7 @@ int main() {
     setGpioPinHigh(D3_relay);
     setGpioPinHigh(D4_relay);
     
-    //Set input Ports
+    //Set input Ports (Current Sensors)
     setGpioPinModeInput(A1_CT);
     setGpioPinModeInput(A2_CT);
     setGpioPinModeInput(A3_CT);
@@ -150,55 +153,55 @@ int main() {
        usb.print(i);
        usb.println("----------------\r");
        usb.print("A1: ");
-       usb.print(readGpioPinAnalog(A1_CT));
+       usb.print(currentHash[readGpioPinAnalog(A1_CT)]);
        usb.print("\n\r");
        usb.print("A2: ");
-       usb.print(readGpioPinAnalog(A2_CT));
+       usb.print(currentHash[readGpioPinAnalog(A2_CT)]);
        usb.print("\n\r");
        usb.print("A3: ");
-       usb.print(readGpioPinAnalog(A3_CT));
+       usb.print(currentHash[readGpioPinAnalog(A3_CT)]);
        usb.print("\n\r");
        usb.print("A4: ");
-       usb.print(readGpioPinAnalog(A4_CT));
+       usb.print(currentHash[readGpioPinAnalog(A4_CT)]);
        usb.println("\n\r");
        usb.print("B1: ");
-       usb.print(readGpioPinAnalog(B1_CT));
+       usb.print(currentHash[readGpioPinAnalog(B1_CT)]);
        usb.print("\n\r");
        usb.print("B2: ");
-       usb.print(readGpioPinAnalog(B2_CT));
+       usb.print(currentHash[readGpioPinAnalog(B2_CT)]);
        usb.print("\n\r");
        usb.print("B3: ");
-       usb.print(readGpioPinAnalog(B3_CT));
+       usb.print(currentHash[readGpioPinAnalog(B3_CT)]);
        usb.print("\n\r");
        usb.print("B4: ");
-       usb.print(readGpioPinAnalog(B4_CT));
+       usb.print(currentHash[readGpioPinAnalog(B4_CT)]);
        usb.println("\n\r");
        usb.print("C1: ");
-       usb.print(readGpioPinAnalog(C1_CT));
+       usb.print(currentHash[readGpioPinAnalog(C1_CT)]);
        usb.print("\n\r");
        usb.print("C2: ");
-       usb.print(readGpioPinAnalog(C2_CT));
+       usb.print(currentHash[readGpioPinAnalog(C2_CT)]);
        usb.print("\n\r");
        usb.print("C3: ");
-       usb.print(readGpioPinAnalog(C3_CT));
+       usb.print(currentHash[readGpioPinAnalog(C3_CT)]);
        usb.print("\n\r");
        usb.print("C4: ");
-       usb.println(readGpioPinAnalog(C4_CT));
+       usb.print(currentHash[readGpioPinAnalog(C4_CT)]);
        usb.println("\n\r");
        usb.print("D1: ");
-       usb.print(readGpioPinAnalog(D1_CT));
+       usb.print(currentHash[readGpioPinAnalog(D1_CT)]);
        usb.print("\n\r");
        usb.print("D2: ");
-       usb.print(readGpioPinAnalog(D2_CT));
+       usb.print(currentHash[readGpioPinAnalog(D2_CT)]);
        usb.print("\n\r");
        usb.print("D3: ");
-       usb.print(readGpioPinAnalog(D3_CT));
+       usb.print(currentHash[readGpioPinAnalog(D3_CT)]);
        usb.print("\n\r");
        usb.print("D4: ");
-       usb.print(readGpioPinAnalog(D4_CT));
+       usb.print(currentHash[readGpioPinAnalog(D4_CT)]);
        usb.print("\n\r");
        i++;
-       delayMilliseconds(2000);
+       delayMilliseconds(5000);
     }
     return 0;
 }
