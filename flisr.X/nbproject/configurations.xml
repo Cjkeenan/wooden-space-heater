@@ -144,7 +144,7 @@
         <property key="optimization-level" value="-O1"/>
         <property key="pack-struct" value="true"/>
         <property key="preprocess-only" value="false"/>
-        <property key="preprocessor-macros" value="F_CPU=16000000L"/>
+        <property key="preprocessor-macros" value=""/>
         <property key="preprocessor-macros-undefined" value=""/>
         <property key="save-temps" value="false"/>
         <property key="short-calls" value="false"/>
@@ -214,7 +214,7 @@
         <property key="sram-segment" value=""/>
         <property key="v-printf" value="false"/>
       </AVR-LD>
-      <item path="main.cpp" ex="true" overriding="false">
+      <item path="main.cpp" ex="false" overriding="false">
         <AVR-AR>
         </AVR-AR>
         <AVR-AS>
@@ -257,7 +257,7 @@
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmerToGoFilePath"
-                  value="C:/Users/Colin Keenan/OneDrive/GitHub/Cjkeenan/wooden-space-heater/flisr.X/debug/default/flisr_ptg"/>
+                  value="C:/Users/markt/OneDrive/Desktop/SeniorProject/flisr.X/debug/default/flisr_ptg"/>
         <property key="programmerToGoImageName" value="flisr_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -282,6 +282,8 @@
         <property key="ptgSendImage" value="true"/>
         <property key="voltagevalue" value="5.0"/>
       </pk4hybrid>
+      <item path="serial_test.cpp" ex="true" overriding="false">
+      </item>
       <item path="test.cpp" ex="true" overriding="false">
         <AVR-AR>
         </AVR-AR>
