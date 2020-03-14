@@ -59,86 +59,39 @@ void turnOffAllRelays();
 void turnOnAllRelays();
 
 int main() {
-    initHash();
     initSystem();
     initSystemClock();
-    initA2D();
 
     Serial0 usb;
     usb.start( 38400 );
     delayMilliseconds( 2000 );
 
-    USART0::write( "\n\nSerial Init\n" );   
-
-    usb.write( "\n\nwrite() test\n" );
-
-    usb.write( '1' );
-
-    usb.write( '\n' );
-
-    usb.write( "write() done\n" );
-
-    usb.println( "\n\nprintln() test" );
-
-    usb.println( 1 );
-
-    usb.println( "println() done" );
-
-    usb.println( 1 );
+//    USART0::write( "\n\nSerial Init\n" );   
+//    usb.write( "\n\nwrite() test\n" );
+//    usb.write( '1' );
+//    usb.write( '\n' );
+//    usb.write( "write() done\n" );
+//    usb.println( "\n\nprintln() test" );
+//    usb.println( 1 );
+//    usb.println( "println() done" );
+//    usb.println( 1 );
     
-    //Set Output Ports (Relays)
-    setGpioPinModeOutput(A1_relay);
-    setGpioPinModeOutput(A2_relay);
-    setGpioPinModeOutput(A3_relay);
-    setGpioPinModeOutput(A4_relay);
+    initA2D();
+    initIO();
+//    initHash();     // Currently this breaks all serial output (Unknown Reason)
     
-    setGpioPinModeOutput(B1_relay);
-    setGpioPinModeOutput(B2_relay);
-    setGpioPinModeOutput(B3_relay);
-    setGpioPinModeOutput(B4_relay);
+    //Output ports high (OFF)
+    turnOffAllRelays();
     
-    setGpioPinModeOutput(C1_relay);
-    setGpioPinModeOutput(C2_relay);
-    setGpioPinModeOutput(C3_relay);
-    setGpioPinModeOutput(C4_relay);
-    
-    setGpioPinModeOutput(D1_relay);
-    setGpioPinModeOutput(D2_relay);
-    setGpioPinModeOutput(D3_relay);
-    setGpioPinModeOutput(D4_relay);
-    
-    //Initialize output ports high (OFF)
-    //turnOffAllRelays();
-    
-    //Initialize output ports low (which is inverse in circuit)
-    turnOnAllRelays();
-    
-    //Set input Ports (Current Sensors)
-    setGpioPinModeInput(A1_CT);
-    setGpioPinModeInput(A2_CT);
-    setGpioPinModeInput(A3_CT);
-    setGpioPinModeInput(A4_CT);
-    
-    setGpioPinModeInput(B1_CT);
-    setGpioPinModeInput(B2_CT);
-    setGpioPinModeInput(B3_CT);
-    setGpioPinModeInput(B4_CT);
-    
-    setGpioPinModeInput(C1_CT);
-    setGpioPinModeInput(C2_CT);
-    setGpioPinModeInput(C3_CT);
-    setGpioPinModeInput(C4_CT);
-    
-    setGpioPinModeInput(D1_CT);
-    setGpioPinModeInput(D2_CT);
-    setGpioPinModeInput(D3_CT);
-    setGpioPinModeInput(D4_CT);
+    //Output ports low (OFF)
+    //turnOnAllRelays();
     
     int i = 0;
     while(true){
        usb.print("----------------CURRENT READ NUMBER ");
        usb.print(i);
        usb.println("----------------\r");
+       
        usb.print("A1: ");
        usb.print(currentHash[readGpioPinAnalog(A1_CT)]);
        usb.print("\n\r");
@@ -151,6 +104,7 @@ int main() {
        usb.print("A4: ");
        usb.print(currentHash[readGpioPinAnalog(A4_CT)]);
        usb.println("\n\r");
+       
        usb.print("B1: ");
        usb.print(currentHash[readGpioPinAnalog(B1_CT)]);
        usb.print("\n\r");
@@ -163,6 +117,7 @@ int main() {
        usb.print("B4: ");
        usb.print(currentHash[readGpioPinAnalog(B4_CT)]);
        usb.println("\n\r");
+       
        usb.print("C1: ");
        usb.print(currentHash[readGpioPinAnalog(C1_CT)]);
        usb.print("\n\r");
@@ -175,6 +130,7 @@ int main() {
        usb.print("C4: ");
        usb.print(currentHash[readGpioPinAnalog(C4_CT)]);
        usb.println("\n\r");
+       
        usb.print("D1: ");
        usb.print(currentHash[readGpioPinAnalog(D1_CT)]);
        usb.print("\n\r");
@@ -187,6 +143,7 @@ int main() {
        usb.print("D4: ");
        usb.print(currentHash[readGpioPinAnalog(D4_CT)]);
        usb.print("\n\r");
+       
        i++;
        delayMilliseconds(5000);
     }
@@ -241,4 +198,48 @@ void turnOffAllRelays(){
     setGpioPinHigh(D2_relay);
     setGpioPinHigh(D3_relay);
     setGpioPinHigh(D4_relay);
+}
+
+void initIO(){
+    //Set Output Ports (Relays)
+    setGpioPinModeOutput(A1_relay);
+    setGpioPinModeOutput(A2_relay);
+    setGpioPinModeOutput(A3_relay);
+    setGpioPinModeOutput(A4_relay);
+    
+    setGpioPinModeOutput(B1_relay);
+    setGpioPinModeOutput(B2_relay);
+    setGpioPinModeOutput(B3_relay);
+    setGpioPinModeOutput(B4_relay);
+    
+    setGpioPinModeOutput(C1_relay);
+    setGpioPinModeOutput(C2_relay);
+    setGpioPinModeOutput(C3_relay);
+    setGpioPinModeOutput(C4_relay);
+    
+    setGpioPinModeOutput(D1_relay);
+    setGpioPinModeOutput(D2_relay);
+    setGpioPinModeOutput(D3_relay);
+    setGpioPinModeOutput(D4_relay);
+    
+    //Set input Ports (Current Sensors)
+    setGpioPinModeInput(A1_CT);
+    setGpioPinModeInput(A2_CT);
+    setGpioPinModeInput(A3_CT);
+    setGpioPinModeInput(A4_CT);
+    
+    setGpioPinModeInput(B1_CT);
+    setGpioPinModeInput(B2_CT);
+    setGpioPinModeInput(B3_CT);
+    setGpioPinModeInput(B4_CT);
+    
+    setGpioPinModeInput(C1_CT);
+    setGpioPinModeInput(C2_CT);
+    setGpioPinModeInput(C3_CT);
+    setGpioPinModeInput(C4_CT);
+    
+    setGpioPinModeInput(D1_CT);
+    setGpioPinModeInput(D2_CT);
+    setGpioPinModeInput(D3_CT);
+    setGpioPinModeInput(D4_CT);
 }
