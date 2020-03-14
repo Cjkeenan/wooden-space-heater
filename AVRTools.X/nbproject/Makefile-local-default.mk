@@ -35,4 +35,4 @@ MP_AS_DIR="C:\Program Files (x86)\Microchip\xc8\v2.10\avr\bin"
 MP_LD_DIR="C:\Program Files (x86)\Microchip\xc8\v2.10\avr\bin"
 MP_AR_DIR="C:\Program Files (x86)\Microchip\xc8\v2.10\avr\bin"
 # MP_BC_DIR is not defined
-DFP_DIR="C:/Users/markt/.mchp_packs/Microchip/ATmega_DFP/2.1.87"
+DFP_DIR="C:/Users/Colin Keenan/.mchp_packs/Microchip/ATmega_DFP/2.1.87"

@@ -49,7 +49,6 @@
 #define D2_CT       pPinA13;
 #define D3_CT       pPinA14;
 #define D4_CT       pPinA15;
-<<<<<<< HEAD
 
 // Global Variables
 float currentHash[1024] = {};
@@ -59,14 +58,11 @@ void initHash();
 void turnOffAllRelays();
 void turnOnAllRelays();
 
->>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
 int main() {
     initHash();
     initSystem();
     initSystemClock();
     initA2D();
-<<<<<<< HEAD
->>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
 
     Serial0 usb;
     usb.start( 38400 );
@@ -111,10 +107,8 @@ int main() {
     setGpioPinModeOutput(D3_relay);
     setGpioPinModeOutput(D4_relay);
     
-<<<<<<< HEAD
     //Initialize output ports high (OFF)
     //turnOffAllRelays();
->>>>>>> 89f90e84847dc6999237247a0bf3d892905118f3
     
     //Initialize output ports low (which is inverse in circuit)
     turnOnAllRelays();
