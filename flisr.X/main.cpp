@@ -48,11 +48,16 @@
 #define D3_CT       pPinA14;
 #define D4_CT       pPinA15;
 
+float currentHash[1024];
+
+void initHash();
+
 int main() {
        
     initSystem();
     initSystemClock();
     initA2D();
+    initHash();
 
     Serial0 usb;
     usb.start( 38400 );
@@ -196,4 +201,10 @@ int main() {
        delayMilliseconds(2000);
     }
     return 0;
+}
+
+void initHash(){
+    for(int i = 0; i < 1024; i++){
+        currentHash[i] = i / 51.15;
+    }
 }
